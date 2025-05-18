@@ -42,21 +42,6 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MyEcommerceAppTheme {
-        Greeting("Android")
-    }
-}
-@Composable
 fun ProductList(products: List<Product>, modifier: Modifier = Modifier) {
     LazyColumn(modifier = modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
         items(products) { product ->
@@ -75,5 +60,16 @@ fun ProductList(products: List<Product>, modifier: Modifier = Modifier) {
                 }
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ProductListPreview() {
+    val repo = ProductRepositoryFake()
+    val products = repo.productList()
+
+    MyEcommerceAppTheme {
+        ProductList(products = products, modifier = Modifier)
     }
 }
